@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Тёмка!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f7d794;
+            color: #2d3436;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            color: #e84393;
+            margin-top: 20px;
+        }
+        .quest {
+            margin: 50px auto;
+            max-width: 700px;
+            background-color: #ffeaa7;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 2px solid #d63031;
+            background-color: #fdcb6e;
+            color: #2d3436;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        input[type="button"], button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            background-color: #e84393;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover, button:hover {
+            background-color: #d63031;
+        }
+        .hidden {
+            display: none;
+        }
+        .correct {
+            color: #00b894;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: #d63031;
+            font-weight: bold;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>С Днём Рождения, Тёмка!</h1>
+    <h2>Интерактивный квест по мотивам "Король и Шут"</h2>
+
+    <div class="quest">
+        <!-- Вопросы -->
+        <div class="question" id="question1">
+            <p>Вопрос 1: Как называется альбом "Король и Шут", где есть песня "Прыгну со скалы"?</p>
+            <input type="text" id="answer1" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(1, 'Как в старой сказке')">
+            <p class="feedback" id="feedback1"></p>
+        </div>
+
+        <div class="question hidden" id="question2">
+            <p>Вопрос 2: Закончите строку: "Я алкоголик, я _____" (песня "Алкоголь")</p>
+            <input type="text" id="answer2" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(2, 'анархист')">
+            <p class="feedback" id="feedback2"></p>
+        </div>
+
+        <div class="question hidden" id="question3">
+            <p>Вопрос 3: Какое животное упоминается в песне "Лесник"?</p>
+            <select id="answer3">
+                <option value="">Выберите ответ</option>
+                <option value="волк">Волк</option>
+                <option value="медведь">Медведь</option>
+                <option value="лисица">Лисица</option>
+                <option value="сова">Сова</option>
+            </select>
+            <input type="button" value="Проверить" onclick="checkAnswer(3, 'волк')">
+            <p class="feedback" id="feedback3"></p>
+        </div>
+
+        <div class="question hidden" id="question4">
+            <p>Вопрос 4: Прослушайте отрывок песни и назовите её.</p>
+            <audio controls>
+                <source src="sample1.mp3" type="audio/mp3">
+                Ваш браузер не поддерживает аудиоэлемент.
+            </audio>
+            <input type="text" id="answer4" placeholder="Название песни">
+            <input type="button" value="Проверить" onclick="checkAnswer(4, 'Лесник')">
+            <p class="feedback" id="feedback4"></p>
+        </div>
+
+        <div class="question hidden" id="question5">
+            <p>Вопрос 5: Кто является основателем группы "Король и Шут"?</p>
+            <input type="text" id="answer5" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(5, 'Михаил Горшенёв')">
+            <p class="feedback" id="feedback5"></p>
+        </div>
+
+        <div class="question hidden" id="question6">
+            <p>Вопрос 6: Какая песня "Король и Шут" начинается со слов "В темноте ночной..."?</p>
+            <select id="answer6">
+                <option value="">Выберите ответ</option>
+                <option value="Кукла колдуна">Кукла колдуна</option>
+                <option value="Прыгну со скалы">Прыгну со скалы</option>
+                <option value="Лесник">Лесник</option>
+                <option value="Ели мясо мужики">Ели мясо мужики</option>
+            </select>
+            <input type="button" value="Проверить" onclick="checkAnswer(6, 'Кукла колдуна')">
+            <p class="feedback" id="feedback6"></p>
+        </div>
+
+        <div class="question hidden" id="question7">
+            <p>Вопрос 7: Какой музыкальный стиль преобладает в творчестве "Король и Шут"?</p>
+            <input type="text" id="answer7" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(7, 'панк-рок')">
+            <p class="feedback" id="feedback7"></p>
+        </div>
+
+        <div class="question hidden" id="question8">
+            <p>Вопрос 8: Прослушайте отрывок песни и назовите её.</p>
+            <audio controls>
+                <source src="sample2.mp3" type="audio/mp3">
+                Ваш браузер не поддерживает аудиоэлемент.
+            </audio>
+            <input type="text" id="answer8" placeholder="Название песни">
+            <input type="button" value="Проверить" onclick="checkAnswer(8, 'Кукла колдуна')">
+            <p class="feedback" id="feedback8"></p>
+        </div>
+
+        <div class="question hidden" id="question9">
+            <p>Вопрос 9: Какая песня "Король и Шут" содержит строки "Ты иду, иду, иду за тобой..."?</p>
+            <input type="text" id="answer9" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(9, 'Проклятый старый дом')">
+            <p class="feedback" id="feedback9"></p>
+        </div>
+
+        <div class="question hidden" id="question10">
+            <p>Вопрос 10: В каком году был выпущен альбом "Как в старой сказке"?</p>
+            <input type="text" id="answer10" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(10, '2001')">
+            <p class="feedback" id="feedback10"></p>
+        </div>
+
+        <div class="question hidden" id="question11">
+            <p>Вопрос 11: Какой музыкальный инструмент доминирует в песне "Танец злобного гения"?</p>
+            <select id="answer11">
+                <option value="">Выберите ответ</option>
+                <option value="Гитара">Гитара</option>
+                <option value="Барабаны">Барабаны</option>
+                <option value="Скрипка">Скрипка</option>
+                <option value="Флейта">Флейта</option>
+            </select>
+            <input type="button" value="Проверить" onclick="checkAnswer(11, 'Скрипка')">
+            <p class="feedback" id="feedback11"></p>
+        </div>
+
+        <div class="question hidden" id="question12">
+            <p>Вопрос 12: Как называется альбом, выпущенный после смерти Михаила Горшенёва?</p>
+            <input type="text" id="answer12" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(12, 'Прекрасное далёко')">
+            <p class="feedback" id="feedback12"></p>
+        </div>
+
+        <div class="question hidden" id="question13">
+            <p>Вопрос 13: Прослушайте отрывок песни и назовите её.</p>
+            <audio controls>
+                <source src="sample3.mp3" type="audio/mp3">
+                Ваш браузер не поддерживает аудиоэлемент.
+            </audio>
+            <input type="text" id="answer13" placeholder="Название песни">
+            <input type="button" value="Проверить" onclick="checkAnswer(13, 'Проклятый старый дом')">
+            <p class="feedback" id="feedback13"></p>
+        </div>
+
+        <div class="question hidden" id="question14">
+            <p>Вопрос 14: В каком городе была основана группа "Король и Шут"?</p>
+            <select id="answer14">
+                <option value="">Выберите ответ</option>
+                <option value="Москва">Москва</option>
+                <option value="Санкт-Петербург">Санкт-Петербург</option>
+                <option value="Новосибирск">Новосибирск</option>
+                <option value="Екатеринбург">Екатеринбург</option>
+            </select>
+            <input type="button" value="Проверить" onclick="checkAnswer(14, 'Санкт-Петербург')">
+            <p class="feedback" id="feedback14"></p>
+        </div>
+
+        <div class="question hidden" id="question15">
+            <p>Вопрос 15: Как называется последний студийный альбом группы "Король и Шут"?</p>
+            <input type="text" id="answer15" placeholder="Ваш ответ">
+            <input type="button" value="Проверить" onclick="checkAnswer(15, 'Театр Демона')">
+            <p class="feedback" id="feedback15"></p>
+        </div>
+
+        <!-- Поздравление -->
+        <div class="question hidden" id="congrats">
+            <h2>Поздравляю, Тёмка!</h2>
+            <p>Ты успешно прошёл квест! Желаю тебе отличного дня и побольше новых альбомов от "Король и Шут"!</p>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer(questionNumber, correctAnswer) {
+            const userAnswer = document.getElementById('answer' + questionNumber).value.toLowerCase();
+            const feedback = document.getElementById('feedback' + questionNumber);
+
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                feedback.textContent = 'Правильно!';
+                feedback.className = 'feedback correct';
+                document.getElementById('question' + questionNumber).classList.add('hidden');
+                if (document.getElementById('question' + (questionNumber + 1))) {
+                    document.getElementById('question' + (questionNumber + 1)).classList.remove('hidden');
+                } else {
+                    document.getElementById('congrats').classList.remove('hidden');
+                }
+            } else {
+                feedback.textContent = 'Неправильно, попробуй снова!';
+                feedback.className = 'feedback incorrect';
+            }
+        }
+    </script>
+</body>
+</html>
+
+              
